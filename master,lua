@@ -1,0 +1,145 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local base = Instance.new("ScreenGui")
+local Data = Instance.new("Folder")
+local L = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Top = Instance.new("Frame")
+local TITLE = Instance.new("TextLabel")
+local Bar1 = Instance.new("Frame")
+local Fol = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local UICorner_3 = Instance.new("UICorner")
+local LOADING = Instance.new("TextLabel")
+
+--Properties:
+
+base.Name = "base"
+base.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+base.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Data.Name = "Data"
+Data.Parent = base
+
+L.Name = "L"
+L.Parent = base
+L.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+L.Position = UDim2.new(0.407171786, 0, 0.287721753, 0)
+L.Size = UDim2.new(0, 305, 0, 346)
+
+UICorner.Parent = L
+
+Top.Name = "Top"
+Top.Parent = L
+Top.BackgroundColor3 = Color3.fromRGB(255, 134, 48)
+Top.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Top.BorderSizePixel = 0
+Top.Position = UDim2.new(-0.00295084342, 0, -0.0567431748, 0)
+Top.Size = UDim2.new(0, 305, 0, 27)
+Top.ZIndex = 2
+
+TITLE.Name = "TITLE"
+TITLE.Parent = Top
+TITLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TITLE.BackgroundTransparency = 1.000
+TITLE.Size = UDim2.new(0, 305, 0, 26)
+TITLE.Font = Enum.Font.GothamBold
+TITLE.Text = "Explorer Hub - v1.0.0"
+TITLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+TITLE.TextSize = 14.000
+
+Bar1.Name = "Bar1"
+Bar1.Parent = L
+Bar1.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Bar1.Position = UDim2.new(0.0327868834, 0, 0.341040462, 0)
+Bar1.Size = UDim2.new(0, 282, 0, 27)
+
+Fol.Name = "Fol"
+Fol.Parent = Bar1
+Fol.BackgroundColor3 = Color3.fromRGB(244, 128, 46)
+Fol.Size = UDim2.new(0, 8, 0, 27)
+
+UICorner_2.Parent = Fol
+
+UICorner_3.Parent = Bar1
+
+LOADING.Name = "LOADING"
+LOADING.Parent = Bar1
+LOADING.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LOADING.BackgroundTransparency = 1.000
+LOADING.Position = UDim2.new(0.152482271, 0, -2.44444442, 0)
+LOADING.Size = UDim2.new(0, 200, 0, 50)
+LOADING.Font = Enum.Font.GothamBold
+LOADING.Text = "LOADING:"
+LOADING.TextColor3 = Color3.fromRGB(255, 255, 255)
+LOADING.TextSize = 14.000
+LOADING.TextWrapped = true
+
+-- Scripts:
+
+local function WPONK_fake_script() -- Bar1.Tween 
+	local script = Instance.new('LocalScript', Bar1)
+
+	local Bar1 = script.Parent.Parent.Bar1
+	local MaxSize = Bar1.Size
+	local TweeningStuff = Bar1.Fol
+	local TweenInf = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+	local TweenService = game:GetService("TweenService")
+	
+	script.Parent.Parent.Parent.Data.Tweening.Value = true
+	TweenService:Create(TweeningStuff, TweenInf, {Size = MaxSize}):Play()
+end
+coroutine.wrap(WPONK_fake_script)()
+local function ZGDHZZD_fake_script() -- L.LoadingHandler 
+	local script = Instance.new('LocalScript', L)
+
+	if script.Parent.Parent.Data.Tweening.Value == true then
+		local Loading = script.Parent.Parent.Data.Loading
+		Loading.Value = "Loading Data.."
+		wait(2)
+		Loading.Value = "Checking Whitelist.."
+		wait(2)
+		Loading.Value = "Changing Whitelist.."
+		wait(2)
+		Loading.Value = "Loading Scripts.."
+		wait(1)
+		Loading.Value = "Loading Databases.."
+		wait(2)
+		Loading.Value = "Joining Discord.."
+		wait(1)
+		Loading.Value = "Ready to launch!"
+	end
+end
+coroutine.wrap(ZGDHZZD_fake_script)()
+local function ICQBH_fake_script() -- L.LoadingHandler2 
+	local script = Instance.new('LocalScript', L)
+
+	if script.Parent.Parent.Data.Tweening.Value == true then
+		local F = script.Parent.Parent.L.Bar1.LOADING
+		while wait() do
+			F.Text = script.Parent.Parent.Data.Loading.Value
+			wait(.5)
+			if F.Text == "Ready to launch!" then
+				script.Parent.Parent.L.Visible = false
+				script.Parent.Parent.O.Visible = true
+			end
+		end
+		
+	end
+end
+coroutine.wrap(ICQBH_fake_script)()
+local function ATTK_fake_script() -- base.WhitlistChecker 
+	local script = Instance.new('LocalScript', base)
+
+	local Data = script.Parent.Data
+	
+	if game.Players.LocalPlayer.Name == "Vitalii_10" then
+		Data.Blacklisted.Value = true
+	else
+		Data.Blacklisted.Value = false
+	end
+end
+coroutine.wrap(ATTK_fake_script)()
